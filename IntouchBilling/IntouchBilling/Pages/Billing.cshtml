@@ -1,0 +1,105 @@
+﻿
+
+@page 
+@model IntouchBilling.Pages.BillingModel
+@{
+    Layout = "_Layout";
+}
+<form class="form-horizontal" enctype="multipart/form-data" method="post">
+    <div class="container-fluid pt-5 pl-5 wrapper-w">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="categoryId">Category</label><br>
+                    <select id="categoryId" name="Category">
+                        <option value="0" disabled selected>--select category--</option>
+                        <option value="Electrotherapy">Electrotherapy</option>
+                        <option value="Orthopedic Physiotherapy">Orthopedic Physiotherapy</option>
+                        <option value="Pediatric Physiotherapy">Pediatric Physiotherapy</option>
+                        <option value="Speech Therapy">Speech Therapy</option>
+                    </select><br>
+
+                </div>
+
+                <div class="col-md-3">
+                    <label for="customername">Customer Name</label><br>
+                    <input type="text" name="CustomerName">
+
+                </div>
+
+                <div class="col-md-3">
+                    <label for="mobile">Mobile</label><br>
+                    <input type="text" name="Mobile">
+
+                </div>
+                <div class="col-md-3">
+                  
+
+                </div>
+
+
+                <div class="col-md-3">
+                    <label for="sessionid" style="color: #000;">Amount</label><br>
+                    <select id="sessionid" name="Session">
+                        <option value="0" disabled selected>--select session--</option>
+                        <option value="Session 1">Session 1</option>
+                        <option value="Session 2">Session 2</option>
+                        <option value="Session 3">Session 3</option>
+                        <option value="Session 4">Session 4</option>
+                        <option value="Session 5">Session 5</option>
+                    </select><br>
+
+                </div>
+                <div class="col-md-3 pt-3 pr-5">
+                    <label for="country"></label><br>
+                    <input type="text" name="Amount">
+
+                </div>
+
+                <div class="col-md-3">
+                    <label for="status">Status</label><br>
+                    <select id="status" name="Status">
+                        <option value="Paid">Paid</option>
+                        <option value="Pending">Pending</option>
+                    </select><br>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="container wrapper-radio pt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="wrapper-payment">Payment Mode</p>
+
+                    <ul>
+                        <a href="">
+                        <li>  <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cash">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
+                        <a href="">
+                        <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Card">&nbsp; &nbsp; &nbsp; &nbsp;Card</li></a>
+                        <a href="">
+                        <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cheque">&nbsp; &nbsp; &nbsp; &nbsp;Cheque</li></a>
+                        <a href="">
+                        <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Online">&nbsp; &nbsp; &nbsp; &nbsp;Online</li></a>
+
+                    </ul><br>
+
+                    <div class="pt-2">
+                        <a href=""><button class="submit">Save</button></a>&nbsp; &nbsp;
+                        <a href=""><button class="btn ">Cancel</button></a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</form>

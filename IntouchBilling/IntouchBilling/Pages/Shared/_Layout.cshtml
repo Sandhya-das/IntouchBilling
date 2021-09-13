@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>@ViewData["Title"] - IntouchBilling</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-3.4.1.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+
+    <title>billing</title>
+</head>
+<body>
+    <section>
+        <div id="viewport">
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <header>
+                    <a href="#"><img class="logo" src="./img/intouch.png"></a>
+                    <hr class="x">
+
+                    <ul class="nav">
+
+                        <li>
+
+
+                            <a href="#">
+                                <i class="zmdi zmdi-view-dashboard"></i><img class="wr" src="./img/bill.png"> &nbsp; &nbsp;&nbsp; Billing
+                                <hr class="x1">
+                            </a>
+
+
+
+
+                        </li>
+                        <li>
+
+
+                            <a href="#" class="pt-2">
+                                <i class="zmdi zmdi-link"></i><img class="wr" src="./img/report.png"> &nbsp; &nbsp; Reports
+                                <hr class="x2">
+                            </a>
+
+
+                        </li>
+                        <li>
+
+
+                            <a href="#" class="pt-3">
+                                <i class="zmdi zmdi-widgets"></i><img class="wr" src="./img/logout.png"> &nbsp; &nbsp; Logout
+
+                            </a>
+
+
+                        </li>
+
+                    </ul>
+                </header>
+
+            </div>
+            <!-- Content -->
+            <div id="content">
+                <nav class="navbar navbar-default pt-5">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav navbar-right  pb-4">
+                            <li>
+
+                            </li>
+                            <h1 class="tg">Intouch Billing Software</h1>
+                        </ul>
+
+
+                        <div class="wrapper-u">
+                            <p class="pt-1 ">Ajay</p>
+                            <p class="back"><img class="ui" src="./img/user (1).png"></p>
+                            <p><img class="ui pt-1" src="./img/down.png"></p>
+                        </div>
+
+
+                    </div>
+
+                </nav>
+
+                @RenderBody()
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="container-fluid wrapper-bottom pt-2 ">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="pt-2">Developed By Sproutheads Innovation LLP</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
