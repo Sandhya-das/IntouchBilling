@@ -8,7 +8,7 @@ namespace IntouchBilling.Entity
     public class Billing
     {
         [Key]
-        public int Id { get; set; }
+        public int RegistrationId { get; set; }
 
         public string Category { get; set; }
 

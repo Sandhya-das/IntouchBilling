@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IntouchBilling.Entity;
 using IntouchBilling.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -34,7 +35,6 @@ namespace IntouchBilling.Pages
             Entity.Login login = new Entity.Login
             {
                 Username = this.Username,
-                //Password = "test@123"
                 Password =  this.Password
             };
 
@@ -43,7 +43,7 @@ namespace IntouchBilling.Pages
             
             if (loginData.Result != null)
             {
-                // HttpContext.Session.SetString("username", UserName);
+               HttpContext.Session.SetString("username", loginData.Result.Username);
                 return RedirectToPage("Billing",new { id = loginId });
             }
             else

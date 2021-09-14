@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IntouchBilling.Entity;
 using IntouchBilling.Repository;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -15,6 +16,7 @@ namespace IntouchBilling.Pages
     public class BillingModel : PageModel
     {
         public int Id { get; set; }
+        public int RegistrationId { get; set; }
 
         [Required]
         [Display(Name = "Category")]
@@ -51,10 +53,15 @@ namespace IntouchBilling.Pages
             this.billingRepository = billingRepository;
             _environment = environment;
         }
-        public void OnGet( int id)
+       public IActionResult OnGet(int id)
+        
         {
             int Id = id;
-                    
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("username")))
+            {
+                return RedirectToPage("Index");
+            }
+            return Page();
         }
 
         public IActionResult OnPost()

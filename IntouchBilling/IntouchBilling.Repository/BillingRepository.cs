@@ -30,13 +30,20 @@ namespace IntouchBilling.Repository
             dbparams.Add("@PaymentMode",Billing.PaymentMode, DbType.String);
             dbparams.Add("@Status", Billing.Status, DbType.String);
             dbparams.Add("@UserId", Billing.UserId, DbType.Int32);
-            var result = await Task.FromResult(_dapperService.Add<int>("[dbo].[InsertUpdateBillingDetails]", dbparams, commandType: CommandType.StoredProcedure));
+            var result = await Task.FromResult(_dapperService.Add<int>("[dbo].[InsertBillingDetails]", dbparams, commandType: CommandType.StoredProcedure));
             return result;
         }
 
-        public Task<IEnumerable<Billing>> Edit(int id)
+        public async Task<IEnumerable<Billing>> Edit(int id)
         {
-            throw new NotImplementedException();
+            var dbparams = new DynamicParameters();
+            dbparams.Add("RegId", id, DbType.Int32);
+            var result = await Task.FromResult(_dapperService.Add<Billing>("[dbo].[UpdateStatus]", dbparams, commandType: CommandType.StoredProcedure));
+            List<Billing> BillData = new List<Billing>();
+            BillData = await Task.FromResult(_dapperService.GetAll<Billing>("[dbo].[GetAllBillDetails]", dbparams, commandType: CommandType.StoredProcedure));
+            List<Billing> name = BillData.ToList();
+
+            return BillData.ToList();
         }
 
         public async Task<IEnumerable<Billing>> Delete(int Id)
@@ -47,7 +54,7 @@ namespace IntouchBilling.Repository
             List<Billing> BillData = new List<Billing>();
             BillData = await Task.FromResult(_dapperService.GetAll<Billing>("[dbo].[GetAllBillDetails]", dbparams, commandType: CommandType.StoredProcedure));
             List<Billing> name = BillData.ToList();
-
+            
             return BillData.ToList();
         }
 
@@ -59,8 +66,16 @@ namespace IntouchBilling.Repository
             List<Billing> name = BillData.ToList();
             
             return BillData.ToList();
-        }    
-        
+        }
+        public async Task<Billing> GetAllBillById(int id)
+        {
+            var dbparams = new DynamicParameters();
+            dbparams.Add("RegId", id, DbType.Int32);
+            Billing BillData = new Billing();
+            BillData = await Task.FromResult(_dapperService.Get<Billing>("[dbo].[GetRegistrationById]", dbparams, commandType: CommandType.StoredProcedure));
+            Billing name = BillData;
+            return BillData;
+        }
 
     }
 }

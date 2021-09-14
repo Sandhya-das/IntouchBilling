@@ -1,0 +1,47 @@
+﻿@page
+@model IntouchBilling.Pages.PrintModel
+@{
+    Layout = "_printLayout";
+}
+<form class="form-horizontal" enctype="multipart/form-data" method="post">
+    <div class="container-fluid pt-5 pl-5 wrapper-w">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"><label for="CustomerName">Customer Name</label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.CustomerName)</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label for="Mobile">Mobile</label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.Mobile)</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label for="Category">Category</label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.Category)</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label for="Session">Session </label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.Session)</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label for="Amount">Amount</label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.Amount)</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label for="PaymentMode">Payment Mode</label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.PaymentMode)</div>
+            </div>
+        </div>
+        <div class="row">
+           
+        </div>
+        <div class="row">
+            <div class="pt-2">
+                <a href=""><button class="btn" OnClick="window.print()">Print</button></a>&nbsp; &nbsp;
+                <a href=""><button class="btn ">Cancel</button></a>
+            </div>
+        </div>
+
+
+    </div>
+</form>

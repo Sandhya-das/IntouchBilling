@@ -23,7 +23,7 @@ namespace IntouchBilling.Repository
         //    Report reports = report;
         //    string billstatus = report.SearchStatus;
         //    var dbparams = new DynamicParameters();
-        //    return  null;
+        //    return null;
 
         //}
     }

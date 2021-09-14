@@ -12,6 +12,7 @@ namespace IntouchBilling.Repository
         Task<int> Add(Billing Billing);
         Task<IEnumerable<Billing>> Edit(int id);
         Task<IEnumerable<Billing>> Delete(int id);
+        Task<Billing> GetAllBillById(int id);
 
     }
 }

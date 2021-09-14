@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>@ViewData["Title"] - IntouchBilling</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-3.4.1.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+
+    <title>billing</title>
+</head>
+<body>
+    <section>
+        <div id="viewport">
+    
+            <!-- Content -->
+            <div id="content">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        
+                            <header>
+                                <a href="#"><img class="logo" src="./img/intouch.png" width="50" height="60"></a>
+                            </header>
+                       
+
+
+                      
+                    </div>
+
+                </nav>
+
+                @RenderBody()
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="container-fluid wrapper-bottom pt-2 ">
+        <div class="row">
+            <div class="col-md-12">
+                @*<p class="pt-2">Developed By Sproutheads Innovation LLP</p>*@
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

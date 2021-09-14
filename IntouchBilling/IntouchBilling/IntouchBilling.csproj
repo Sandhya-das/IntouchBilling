@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Delete.cshtml.cs" />
     <Compile Remove="Pages\Reports.cshtml.cs" />
+    <Compile Remove="Pages\Update.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Delete.cshtml" />
     <Content Remove="Pages\Reports.cshtml" />
+    <Content Remove="Pages\Update.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
