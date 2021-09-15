@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntouchBilling.Repository.Interface
+namespace IntouchBilling.Repository
 {
     public interface IReportRepository
     {
-       // Task<IEnumerable<Billing>> Search(Report report);
+       Task<IEnumerable<Billing>> Search(Report report);
     }
 }

@@ -1,47 +1,48 @@
 ﻿
 
-@page 
+@page
+
 @model IntouchBilling.Pages.BillingModel
 @{
     Layout = "_Layout";
 }
-<form class="form-horizontal" enctype="multipart/form-data" method="post">
+<form class="form-horizontal" enctype="multipart/form-data" method="post" name="myform">
     <div class="container-fluid pt-5 pl-5 wrapper-w">
-
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <label for="categoryId">Category</label><br>
-                    <select id="categoryId" name="Category" class="ddlStyle">
+                    <label for="Category">Category</label><br>
+                    <select id="Category" name="Category" class="ddlStyle">
                         <option value="0" disabled selected>--select category--</option>
                         <option value="Electrotherapy">Electrotherapy</option>
                         <option value="Orthopedic Physiotherapy">Orthopedic Physiotherapy</option>
                         <option value="Pediatric Physiotherapy">Pediatric Physiotherapy</option>
                         <option value="Speech Therapy">Speech Therapy</option>
                     </select><br>
-
+                    <span asp-validation-for="Category" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-3">
-                    <label for="customername">Customer Name</label><br>
-                    <input type="text" name="CustomerName">
-
+                    <label for="CustomerName">Customer Name</label><br>
+                    <input type="text" name="CustomerName" id="CustomerName">
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-3">
-                    <label for="mobile">Mobile</label><br>
-                    <input type="text" name="Mobile">
-
+                    <label for="Mobile">Mobile</label><br>
+                    <input type="text" name="Mobile" id="Mobile">
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
                 </div>
                 <div class="col-md-3">
-                  
+
 
                 </div>
 
 
                 <div class="col-md-3">
-                    <label for="sessionid" style="color: #000;">Amount</label><br>
-                    <select id="sessionid" name="Session" class="ddlStyle">
+                    <label for="Session" style="color: #000;">Session</label><br>
+                    <select id="Session" name="Session" class="ddlStyle">
                         <option value="0" disabled selected>--select session--</option>
                         <option value="Session 1">Session 1</option>
                         <option value="Session 2">Session 2</option>
@@ -49,21 +50,21 @@
                         <option value="Session 4">Session 4</option>
                         <option value="Session 5">Session 5</option>
                     </select><br>
-
+                    <span asp-validation-for="Session" class="text-danger"></span>
                 </div>
                 <div class="col-md-3 pt-3 pr-5">
-                    <label for="country"></label><br>
-                    <input type="text" name="Amount">
-
+                    <label for="Amount">Amount</label><br>
+                    <input type="text" name="Amount" id="Amount">
+                    <span asp-validation-for="Amount" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-3">
-                    <label for="status">Status</label><br>
-                    <select id="status" name="Status" class="ddlStyle">
+                    <label for="Status">Status</label><br>
+                    <select id="Status" name="Status" class="ddlStyle">
                         <option value="Paid">Paid</option>
                         <option value="Pending">Pending</option>
                     </select><br>
-
+                    <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
 
             </div>
@@ -88,10 +89,10 @@
                         <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Online">&nbsp; &nbsp; &nbsp; &nbsp;Online</li></a>
 
                     </ul><br>
-
+                    <span asp-validation-for="Category" class="text-danger"></span>
                     <div class="pt-2">
                         <a href=""><button class="submit">Save</button></a>&nbsp; &nbsp;
-                        <a href=""><button class="submit ">Cancel</button></a>
+                        <a href=""><button class="btn" id="resetBtn">Cancel</button></a>
                     </div>
 
                 </div>
@@ -103,3 +104,11 @@
 
     </div>
 </form>
+<script>
+    $(document).ready(function () {
+        $('#resetBtn').on('click', function (e) {
+            e.preventDefault();
+            $('#myform').reset.click();
+        });
+    });
+</script >

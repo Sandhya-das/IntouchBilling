@@ -118,9 +118,11 @@
                 <td>
                     
                     <form asp-page-handler="Print" method="post" asp-route-Id="@item.RegistrationId">
-                        <button class="submit">Print</button>
-                      
+                        <button class="submit">Print</button>                      
                     </form>
+
+
+
                     <button type="button" class="submit" data-toggle="modal" data-target="@tm">
                         Update Status
                     </button>
@@ -160,7 +162,6 @@
                                 </div>
                                 <div class="modal-footer">
                                     <form asp-page-handler="Delete" method="post" asp-route-Id="@item.RegistrationId">
-                                        @*<input type="text" hidden name="Id" value="@item.Id" />*@
                                         <button type="submit">Delete</button>
                                         <button type="button" class="submit" data-dismiss="modal">Close</button>
                                     </form>

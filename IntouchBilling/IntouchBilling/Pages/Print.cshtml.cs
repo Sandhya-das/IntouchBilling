@@ -39,6 +39,9 @@ namespace IntouchBilling.Pages
             this.billing = bill.Result;
             return Page();
         }
-        
+        public IActionResult OnPost()
+        {
+            return RedirectToPage("Report");
+        }
     }
 }

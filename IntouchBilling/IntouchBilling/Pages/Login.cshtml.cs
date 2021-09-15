@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using IntouchBilling.Entity;
@@ -13,7 +14,11 @@ namespace IntouchBilling.Pages
     [BindProperties]
     public class LoginModel : PageModel
     {
+        [Required]
         public string Username { get; set; }
+
+
+        [Required]
         public string Password { get; set; }
         public string Message { get; set; }
 
@@ -32,26 +37,32 @@ namespace IntouchBilling.Pages
         }
         public IActionResult OnPost()
         {
-            Entity.Login login = new Entity.Login
+            if (ModelState.IsValid)
             {
-                Username = this.Username,
-                Password =  this.Password
-            };
+                Entity.Login login = new Entity.Login
+                {
+                    Username = this.Username,
+                    Password = this.Password
+                };
 
-            var loginData = loginRepository.GetData(login);
-            
-            
-            if (loginData.Result != null)
-            {
-                int loginId = loginData.Result.LoginId;
-                HttpContext.Session.SetString("username", loginData.Result.Username);
-                return RedirectToPage("Billing",new { id = loginId });
+                var loginData = loginRepository.GetData(login);
+
+
+                if (loginData.Result != null)
+                {
+                    int loginId = loginData.Result.LoginId;
+                    HttpContext.Session.SetString("username", loginData.Result.Username);
+                    return RedirectToPage("Billing", new { id = loginId });
+                }
+                else
+                {
+                    Message = "Invalid Login";
+                    return Page();
+
+                }
+
             }
-            else
-            {
-                Message = "Invalid Login";
-                return Page();
-            }
+            return Page();
         }
     }
 }

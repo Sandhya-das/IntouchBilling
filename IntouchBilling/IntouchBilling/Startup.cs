@@ -34,7 +34,7 @@ namespace IntouchBilling
             services.AddTransient<ILoginRepository, LoginRepository>();
             services.AddTransient<IDapperService, DapperService>();
             services.AddTransient<IBillingRepository, BillingRepository>();
-
+            services.AddTransient<IReportRepository, ReportRepository>();
             services.AddDbContext<IntouchBillingContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("IntouchBillingContext")));
             services.AddSession();

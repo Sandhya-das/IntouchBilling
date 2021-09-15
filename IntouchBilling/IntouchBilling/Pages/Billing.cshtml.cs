@@ -27,6 +27,7 @@ namespace IntouchBilling.Pages
         public string CustomerName { get; set; }
 
         [Required]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Mobile number")]
         public string Mobile { get; set; }
 
         [Required]
@@ -34,9 +35,11 @@ namespace IntouchBilling.Pages
 
         [Required]
         public float Amount { get; set; }
+
         [Required]
         [Display(Name = "Mode of Payment")]
         public string PaymentMode { get; set; }
+
         [Required]
         public string Status { get; set; }
         public int UserId { get; set; }
@@ -66,21 +69,25 @@ namespace IntouchBilling.Pages
 
         public IActionResult OnPost()
         {
-     
-            Billing billing = new Billing
+            if(ModelState.IsValid)
             {
-                Category = this.Category,
-                CustomerName = this.CustomerName,
-                Mobile = this.Mobile,
-                Session = this.Session,
-                Amount = this.Amount,
-                PaymentMode = this.PaymentMode,
-                Status = this.Status,
-                UserId = Id
-            };
-           
-            var id = billingRepository.Add(billing);
-            return RedirectToPage("Report");
+                Billing billing = new Billing
+                {
+                    Category = this.Category,
+                    CustomerName = this.CustomerName,
+                    Mobile = this.Mobile,
+                    Session = this.Session,
+                    Amount = this.Amount,
+                    PaymentMode = this.PaymentMode,
+                    Status = this.Status,
+                    UserId = Id
+                };
+
+                var id = billingRepository.Add(billing);
+                return RedirectToPage("Report");
+            }
+
+            return Page();
         }
            
     }

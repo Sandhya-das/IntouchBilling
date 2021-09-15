@@ -173,6 +173,16 @@ button, input{
     border: 1px solid #d2d2d2;
 }
 
+.passwordstyle {
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+}
+
 .wif{
   width: 10px;
 }
