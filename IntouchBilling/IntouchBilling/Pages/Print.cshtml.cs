@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using IntouchBilling.Entity;
 using IntouchBilling.Repository;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -26,11 +27,17 @@ namespace IntouchBilling.Pages
             this.billingRepository = billingRepository;
             _environment = environment;
         }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                return RedirectToPage("Login");
+            }
+            
             int RegId = id;
             var bill = billingRepository.GetAllBillById(RegId);
             this.billing = bill.Result;
+            return Page();
         }
         
     }

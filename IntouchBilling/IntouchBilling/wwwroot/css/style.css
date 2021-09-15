@@ -165,7 +165,13 @@ button, input{
  border: 1px solid #d2d2d2;
 }
 
-
+.ddlStyle {
+    width: 233px;
+    height: 35px;
+    background-color: #efefef;
+    color: grey;
+    border: 1px solid #d2d2d2;
+}
 
 .wif{
   width: 10px;
@@ -208,11 +214,11 @@ button, input{
 }
 
 
-.btn{
-  width: 160px;
-  border-radius: 30px;
-  background-color: #2298ca;
-  color: #fff;
+.btn, .submit, .btn-primary, .close {
+    width: 160px;
+    border-radius: 30px;
+    background-color: #2298ca !important;
+    color: #fff;
 }
 
 .btn:hover{

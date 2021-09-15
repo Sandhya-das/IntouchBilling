@@ -28,7 +28,7 @@ namespace IntouchBilling.Pages
         }
         public void OnGet()
         {
-
+            HttpContext.Session.Remove("username");
         }
         public IActionResult OnPost()
         {
@@ -39,11 +39,12 @@ namespace IntouchBilling.Pages
             };
 
             var loginData = loginRepository.GetData(login);
-            int loginId = loginData.Result.LoginId;
+            
             
             if (loginData.Result != null)
             {
-               HttpContext.Session.SetString("username", loginData.Result.Username);
+                int loginId = loginData.Result.LoginId;
+                HttpContext.Session.SetString("username", loginData.Result.Username);
                 return RedirectToPage("Billing",new { id = loginId });
             }
             else
