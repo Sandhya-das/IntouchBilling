@@ -48,8 +48,11 @@
 <table id="dataList" class="table table-striped table-bordered" style="width:100%">
     <thead class="thead-light">
         <tr>
-            <th hidden>
+            <th hidden class="sorting_asc_disabled">
                 @Html.DisplayNameFor(model => model.Billing[0].RegistrationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Billing[0].BillNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Billing[0].Category)
@@ -87,90 +90,100 @@
             var dltmodalid = "deleteModal" + item.RegistrationId;
             var pm = "#printModal" + item.RegistrationId;
             var printmodalid = "printModal" + item.RegistrationId;
-            <tr>
-                <td hidden>
-                    @Html.DisplayFor(modelItem => item.RegistrationId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mobile)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Session)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PaymentMode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedOn)
-                </td>
-                <td>
-                    
-                    <form asp-page-handler="Print" method="post" asp-route-Id="@item.RegistrationId">
-                        <button class="submit">Print</button>                      
-                    </form>
+        <tr>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.RegistrationId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Session)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.CreatedOn)*@
+                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedOn))
 
+            </td>
+            <td>
+                <div class="row">
+                    <div class="col-md-3">
+                        <form asp-page-handler="Print" method="post" asp-route-Id="@item.RegistrationId">
+                            <button class="submit" title="print this bill details" style="width: min-content; background-color: white; "><i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
 
+                        <button type="button" class="submit" title="Set Status as Paid" style="width: min-content; background-color: white;" data-toggle="modal" data-target="@tm">
+                            @* Update Status*@ <i aria-hidden='true'  class='glyphicon glyphicon-pencil'></i>
+                        </button>
 
-                    <button type="button" class="submit" data-toggle="modal" data-target="@tm">
-                        Update Status
-                    </button>
-
-                    <div class="modal fade" id="@mid" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">Update Confirmation</h4>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure want to update the payment status as Paid?
-                                </div>
-                                <div class="modal-footer">
-                                    <form asp-page-handler="Update" method="post" asp-route-Id="@item.RegistrationId">
-                                        <button type="submit">Update</button>
-                                        <button type="button" class="submit" data-dismiss="modal">Close</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <br />
-                    <button type="button" class="submit" data-toggle="modal" data-target="@modalid">
-                        Delete
-                    </button>
-
-                    <div class="modal fade" id="@dltmodalid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure want to delete this item?
-                                </div>
-                                <div class="modal-footer">
-                                    <form asp-page-handler="Delete" method="post" asp-route-Id="@item.RegistrationId">
-                                        <button type="submit">Delete</button>
-                                        <button type="button" class="submit" data-dismiss="modal">Close</button>
-                                    </form>
+                        <div class="modal fade" id="@mid" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">Update Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure want to update the payment status as Paid?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form asp-page-handler="Update" method="post" asp-route-Id="@item.RegistrationId">
+                                            <button type="submit">Update</button>
+                                            <button type="button" class="submit" data-dismiss="modal">Close</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </td>
-            </tr>
+                    <div class="col-md-3">
+                        <button type="button" class="submit" title="Set Status as Deleted" data-toggle="modal" style="width :min-content; background-color:white;" data-target="@modalid">
+                            @*Delete*@<i aria-hidden='true' class='glyphicon glyphicon-trash'></i>
+                        </button>
+
+                        <div class="modal fade" id="@dltmodalid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure want to delete this item?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form asp-page-handler="Delete" method="post" asp-route-Id="@item.RegistrationId">
+                                            <button type="submit">Delete</button>
+                                            <button type="button" class="submit" data-dismiss="modal">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</td>
+        </tr>
         }
     </tbody>
 </table>

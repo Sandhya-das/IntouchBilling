@@ -8,6 +8,14 @@
 
         <div class="container">
             <div class="row">
+                <div class="col-md-6"><label for="BillNumber">Bill NO.</label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.BillNumber)</div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label for="BillNumber">Bill dated on : </label></div>
+                <div class="col-md-6">@Html.DisplayFor(m => m.billing.CreatedOn)</div>
+            </div>
+            <div class="row">
                 <div class="col-md-6"><label for="CustomerName">Customer Name</label></div>
                 <div class="col-md-6">@Html.DisplayFor(m => m.billing.CustomerName)</div>
             </div>

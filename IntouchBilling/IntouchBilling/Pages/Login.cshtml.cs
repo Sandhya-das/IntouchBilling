@@ -17,7 +17,6 @@ namespace IntouchBilling.Pages
         [Required]
         public string Username { get; set; }
 
-
         [Required]
         public string Password { get; set; }
         public string Message { get; set; }
@@ -47,12 +46,12 @@ namespace IntouchBilling.Pages
 
                 var loginData = loginRepository.GetData(login);
 
-
                 if (loginData.Result != null)
                 {
-                    int loginId = loginData.Result.LoginId;
+                  
+                    HttpContext.Session.SetString("loginID", loginData.Result.LoginId.ToString());
                     HttpContext.Session.SetString("username", loginData.Result.Username);
-                    return RedirectToPage("Billing", new { id = loginId });
+                    return RedirectToPage("Billing");
                 }
                 else
                 {

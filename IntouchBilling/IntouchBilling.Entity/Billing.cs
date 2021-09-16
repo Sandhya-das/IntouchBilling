@@ -28,5 +28,7 @@ namespace IntouchBilling.Entity
 
         public DateTime CreatedOn { get; set; }
 
+        public string BillNumber { get; set; }
+
     }
 }

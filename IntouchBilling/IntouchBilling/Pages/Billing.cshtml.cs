@@ -45,7 +45,11 @@ namespace IntouchBilling.Pages
         public int UserId { get; set; }
 
         [Display(Name = "Date")]
-        public DateTime CreatedOn { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public Nullable<DateTime> CreatedOn { get; set; }
+
+        public string BillNumber { get; set; }
 
         private IHostingEnvironment _environment;
 
@@ -56,10 +60,10 @@ namespace IntouchBilling.Pages
             this.billingRepository = billingRepository;
             _environment = environment;
         }
-       public IActionResult OnGet(int id)
+       public IActionResult OnGet()
         
         {
-            int Id = id;
+           
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("username")))
             {
                 return RedirectToPage("Index");
@@ -80,7 +84,7 @@ namespace IntouchBilling.Pages
                     Amount = this.Amount,
                     PaymentMode = this.PaymentMode,
                     Status = this.Status,
-                    UserId = Id
+                    UserId = Convert.ToInt32(HttpContext.Session.GetString("loginID"))
                 };
 
                 var id = billingRepository.Add(billing);

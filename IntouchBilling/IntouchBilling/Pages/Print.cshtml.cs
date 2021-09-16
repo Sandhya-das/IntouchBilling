@@ -17,6 +17,8 @@ namespace IntouchBilling.Pages
        
         private IHostingEnvironment _environment;
 
+        public string BillNumber { get; set; }
+
         [BindProperty]
         public Billing billing { get; set; }
 
