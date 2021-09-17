@@ -38,7 +38,7 @@
 
 
                 </div>
-
+                </br>
 
                 <div class="col-md-3">
                     <label for="Session" style="color: #000;">Session</label><br>
@@ -52,7 +52,7 @@
                     </select><br>
                     <span asp-validation-for="Session" class="text-danger"></span>
                 </div>
-                <div class="col-md-3 pt-3 pr-5">
+                <div class="col-md-3">
                     <label for="Amount">Amount</label><br>
                     <input type="text" name="Amount" id="Amount">
                     <span asp-validation-for="Amount" class="text-danger"></span>
@@ -79,20 +79,16 @@
                     <p class="wrapper-payment">Payment Mode</p>
 
                     <ul style="padding-left: 40px;">
-                        <a href="">
                         <li>  <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cash">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
-                        <a href="">
                         <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Card">&nbsp; &nbsp; &nbsp; &nbsp;Card</li></a>
-                        <a href="">
                         <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cheque">&nbsp; &nbsp; &nbsp; &nbsp;Cheque</li></a>
-                        <a href="">
                         <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Online">&nbsp; &nbsp; &nbsp; &nbsp;Online</li></a>
 
                     </ul><br>
                     <span asp-validation-for="Category" class="text-danger"></span>
                     <div class="pt-2">
                         <a href=""><button class="submit">Save</button></a>&nbsp; &nbsp;
-                        <a href=""><button class="btn" id="resetBtn">Cancel</button></a>
+                        <a href=""><button class="btnCls" id="resetBtn">Cancel</button></a>
                     </div>
 
                 </div>
