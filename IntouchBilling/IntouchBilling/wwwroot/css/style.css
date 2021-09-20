@@ -208,7 +208,7 @@ button, input{
   background-color: #1b87b8;
   position: absolute;
 
-  top: 100%;
+  top: 94%;
 }
 
 .wrapper-bottom p {
@@ -225,6 +225,13 @@ button, input{
 
 
 .btn, .submit, .btn-primary, .close {
+    width: 160px;
+    border-radius: 30px;
+    background-color: #2298ca !important;
+    color: #fff;
+}
+
+.btnCls{
     width: 160px;
     border-radius: 30px;
     background-color: #2298ca !important;
