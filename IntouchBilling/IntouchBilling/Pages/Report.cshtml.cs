@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+
 namespace IntouchBilling.Pages
 {
     [BindProperties]
@@ -65,13 +66,15 @@ namespace IntouchBilling.Pages
                 FromDate = this.FromDate,
                 ToDate = this.ToDate,
                 SearchStatus = this.SearchStatus,
-               
             };
 
             var searchResult = reportRepository.Search(report);
             this.Billing = searchResult.Result.ToList();
+            //return new JsonResult(this.Billing);
             return Page();
         }
+
+
         public IActionResult OnPostPrint(int id)
         {
             int printId = id;

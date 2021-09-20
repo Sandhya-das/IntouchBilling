@@ -6,14 +6,14 @@
 @{
     Layout = "_Layout";
 }
-<form class="form-horizontal" enctype="multipart/form-data" method="post" name="myform">
+<form class="form-horizontal" enctype="multipart/form-data" method="post" name="myform" id="myform">
     <div class="container-fluid pt-5 pl-5 wrapper-w">
         @*<div asp-validation-summary="All" class="text-danger"></div>*@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <label for="Category">Category</label><br>
-                    <select id="Category" name="Category" class="ddlStyle">
+                    <select id="Category" name="Category" class="ddlStyle" data-val="true" data-val-required="Category is required">
                         <option value="0" disabled selected>--select category--</option>
                         <option value="Electrotherapy">Electrotherapy</option>
                         <option value="Orthopedic Physiotherapy">Orthopedic Physiotherapy</option>
@@ -25,13 +25,13 @@
 
                 <div class="col-md-3">
                     <label for="CustomerName">Customer Name</label><br>
-                    <input type="text" name="CustomerName" id="CustomerName">
+                    <input type="text" name="CustomerName" id="CustomerName" data-val="true" data-val-required="Name is required">
                     <span asp-validation-for="CustomerName" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-3">
                     <label for="Mobile">Mobile</label><br>
-                    <input type="text" name="Mobile" id="Mobile">
+                    <input type="text" name="Mobile" id="Mobile" data-val="true" data-val-required="Mobile is required">
                     <span asp-validation-for="Mobile" class="text-danger"></span>
                 </div>
                 <div class="col-md-3">
@@ -42,7 +42,7 @@
 
                 <div class="col-md-3">
                     <label for="Session" style="color: #000;">Session</label><br>
-                    <select id="Session" name="Session" class="ddlStyle">
+                    <select id="Session" name="Session" class="ddlStyle" data-val="true" data-val-required="Session is required">
                         <option value="0" disabled selected>--select session--</option>
                         <option value="Session 1">Session 1</option>
                         <option value="Session 2">Session 2</option>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="Amount">Amount</label><br>
-                    <input type="text" name="Amount" id="Amount">
+                    <input type="text" name="Amount" id="Amount" data-val="true" data-val-required="Amount is required">
                     <span asp-validation-for="Amount" class="text-danger"></span>
                 </div>
 
@@ -78,14 +78,14 @@
                 <div class="col-md-12">
                     <p class="wrapper-payment">Payment Mode</p>
 
-                    <ul style="padding-left: 40px;">
-                        <li>  <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cash">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
+                    <ul style="padding-left: 40px;" >
+                        <li>  <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cash" data-val="true" data-val-required="Payment Mode is required">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
                         <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Card">&nbsp; &nbsp; &nbsp; &nbsp;Card</li></a>
                         <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cheque">&nbsp; &nbsp; &nbsp; &nbsp;Cheque</li></a>
                         <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Online">&nbsp; &nbsp; &nbsp; &nbsp;Online</li></a>
 
                     </ul><br>
-                    <span asp-validation-for="Category" class="text-danger"></span>
+                    <span asp-validation-for="PaymentMode" class="text-danger"></span>
                     <div class="pt-2">
                         <a href=""><button class="submit">Save</button></a>&nbsp; &nbsp;
                         <a href=""><button class="btnCls" id="resetBtn">Cancel</button></a>
@@ -100,11 +100,16 @@
 
     </div>
 </form>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 <script>
+    
     $(document).ready(function () {
-        $('#resetBtn').on('click', function (e) {
-            e.preventDefault();
-            $('#myform').reset.click();
+        $(function () {
+            $('#myform').on('submit', function (e) {
+               // e.preventDefault();
+            });
         });
     });
 </script >

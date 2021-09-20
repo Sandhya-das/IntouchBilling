@@ -31,15 +31,15 @@
             <!-- Login Form -->
             <form method="post">
                 <div>
-                    <input type="text" id="username" class="fadeIn third" name="Username" placeholder="Username"><br/>
+                    <input type="text" id="username" class="fadeIn third" name="Username" placeholder="Username" data-val="true" data-val-required="Username is required"><br />
                     <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
                 <div class="pt-2">
-                    <input type="password" id="password" class="fadeIn third passwordstyle" name="Password" placeholder="Password"><br />
+                    <input type="password" id="password" class="fadeIn third passwordstyle" name="Password" placeholder="Password" data-val="true" data-val-required="Password is required"><br />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="pt-2">
-                    <input type="submit" class="fadeIn fourth" value="Log In"> 
+                    <input type="submit" class="fadeIn fourth" value="Log In">
                 </div>
             </form>
 
@@ -58,7 +58,8 @@
     <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 
 

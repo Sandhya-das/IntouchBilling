@@ -27,7 +27,7 @@ namespace IntouchBilling.Pages
         public string CustomerName { get; set; }
 
         [Required]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Mobile number")]
+      
         public string Mobile { get; set; }
 
         [Required]
@@ -60,8 +60,7 @@ namespace IntouchBilling.Pages
             this.billingRepository = billingRepository;
             _environment = environment;
         }
-       public IActionResult OnGet()
-        
+       public IActionResult OnGet()       
         {
            
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("username")))
@@ -92,7 +91,8 @@ namespace IntouchBilling.Pages
             }
 
             return Page();
+
         }
-           
+
     }
 }

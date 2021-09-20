@@ -3,7 +3,7 @@
 @{
     Layout = "_Layout";
 }
-
+@Html.AntiForgeryToken()
 <div class="row">
     </br>
 </div>
@@ -11,32 +11,33 @@
     <div class="row">
         @*<div class="col-sm-1">
 
-        </div>*@
+            </div>*@
         <div class="col-md-3">
             <label for="FromDate">From Date </label>
             <br />
             <input type="text" id="txtfromdate" name="FromDate">
         </div>
-        
+
         <div class="col-md-3">
             <label for="ToDate">To Date </label>
             <br />
             <input type="text" id="txttodate" name="ToDate">
         </div>
-       
+
         <div class="col-md-3">
             <label for="status"> Select Status  </label><br>
-             <select id="statusid" name="SearchStatus" class="ddlStyle">
-                    <option value="All" selected>All</option>
-                    <option value="Paid">Paid</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Deleted">Deleted</option>
-             </select><br>
+            <select id="statusid" name="SearchStatus" class="ddlStyle">
+                <option value="All" selected>All</option>
+                <option value="Paid">Paid</option>
+                <option value="Pending">Pending</option>
+                <option value="Deleted">Deleted</option>
+            </select><br>
         </div>
 
         <div class="col-md-3">
             <label for="status">  </label><br>
             <button class="submit">Search</button>
+            @*<button class="button" id="searchBtn">Search</button>*@
         </div>
     </div>
 </form>
@@ -194,8 +195,6 @@
 <script src="~/js/jquery.validate.js"></script>
 <script src="~/js/jquery-ui.js"></script>
 
-
-
 <script>
     $(document).ready(function () {
 
@@ -218,6 +217,28 @@
                 changeYear: true,
                 yearRange: '1950:2100'
             }).datepicker("setDate", "0");
+
+
+    $("#searchBtn").click(function () {
+        var dataString = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "/Report?handler=Search",
+            data: dataString,
+            //beforeSend: function (xhr) {
+            //    xhr.setRequestHeader("XSRF-TOKEN",
+            //        $('input:hidden[name="__RequestVerificationToken"]').val());
+            //},
+            success: function (data) {
+                for (var i = 0; i < data.d.length; i++) {
+                    $("#dataList").append("<tr> <td hidden>" + data.d[i].RegistrationId + "</td><td>" + data.d[i].BillNumber + "</td> <td>" + data.d[i].Category + "</td><td>" + data.d[i].CustomerName + "</td> <td>" + data.d[i].Mobile + "</td><td>" + data.d[i].Session + "</td> <td>" + data.d[i].Amount + "</td><td>" + data.d[i].PaymentMode + "</td> <td>" + data.d[i].Status + "</td></tr>");
+                    alert(JSON.stringify(data));
+                }               
+            }
+        });
+
+        e.preventDefault();
+    });
     });
 
 

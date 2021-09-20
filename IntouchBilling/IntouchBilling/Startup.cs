@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using IntouchBilling.Data;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
 
 namespace IntouchBilling
 {
@@ -26,6 +28,7 @@ namespace IntouchBilling
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
@@ -38,6 +41,11 @@ namespace IntouchBilling
             services.AddDbContext<IntouchBillingContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("IntouchBillingContext")));
             services.AddSession();
+
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+            
             //services.AddMvc().AddRazorPagesOptions(options =>
             //{
             //    options.Conventions.AddPageRoute("/Login", "");

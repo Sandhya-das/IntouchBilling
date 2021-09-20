@@ -1,0 +1,122 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+	background-color: #ffff;
+font-family: 'Fira Sans', sans-serif;
+}
+
+.logo {
+    width: 200px;
+ 
+    position: relative;
+    left: 46%;
+}
+
+.wrapper-top {
+    background-color: #00bcd4e8;
+    padding: 4px 20px;
+}
+
+.contant h2{
+	color: #fff;
+	font-weight: 500;
+	font-size: 25px;
+
+}
+
+
+.contant p{
+	color: #fff;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.contant {
+    position: absolute;
+    left: 80%;
+    bottom: 66%;
+}
+
+
+
+.wrapperdown{
+	background-color: #fff;
+}
+
+
+
+.contant1{
+	 position: absolute;
+    left: 5%;
+}
+   
+
+   .contant2{
+	   position: absolute;
+    left: 80%;
+}
+
+
+.left-p {
+    position: absolute;
+    left: 159%;
+    line-height: 0.5;
+    font-size: 15px;
+}
+
+.right{
+	    line-height: 0.5;
+}
+
+.left {
+    line-height: 0.5;
+    position: absolute;
+    left: 75%;
+}
+
+.btn{
+	width: 120px;
+}
+
+.btn:hover{
+	background-color: #2065a8;
+	color: #fff;
+}
+
+
+
+
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #000;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e600;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    position: relative;
+    left: 0%;
+}
+
+input {
+    border: 3px solid #000;
+    position: absolute;
+    top: 105%;
+    width: 137px;
+    height: 50px;
+   
+    right: 112px;
+}
