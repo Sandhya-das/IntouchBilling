@@ -69,8 +69,9 @@ namespace IntouchBilling.Pages
                 return RedirectToPage("Index");
             }
             return Page();
-        }
 
+        }
+       
         public IActionResult OnPost()
         {
             if(ModelState.IsValid)
@@ -89,9 +90,10 @@ namespace IntouchBilling.Pages
 
                 var id = billingRepository.Add(billing);
                 return RedirectToPage("Report");
+
             }
 
-            return Page();
+           return Page();
         }
            
     }
