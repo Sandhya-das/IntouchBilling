@@ -88,7 +88,7 @@
                     <span asp-validation-for="PaymentMode" class="text-danger"></span>
                     <div class="pt-2">
                         <a href=""><button class="submit">Save</button></a>&nbsp; &nbsp;
-                        <a href=""><button class="btnCls" id="resetBtn">Cancel</button></a>
+                        @*<a href="#Billing"><button class="btnCls" id="resetBtn">Cancel</button></a>*@
                     </div>
 
                 </div>
@@ -106,10 +106,11 @@
 <script>
     
     $(document).ready(function () {
-        $(function () {
-            $('#myform').on('submit', function (e) {
-               // e.preventDefault();
+    
+            $('#resetBtn').on('click', function (e) {
+                e.preventDefault();
+         
             });
-        });
+       
     });
 </script >

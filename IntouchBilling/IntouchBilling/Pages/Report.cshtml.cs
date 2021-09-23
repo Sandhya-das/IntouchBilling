@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
+
 namespace IntouchBilling.Pages
 {
     [BindProperties]
@@ -22,6 +23,8 @@ namespace IntouchBilling.Pages
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public string SearchStatus { get; set; }
+
+        [BindProperty]
         public List<Billing> Billing { get; set; }
 
         private IHostingEnvironment _environment;
@@ -59,19 +62,22 @@ namespace IntouchBilling.Pages
             var result = billingRepository.Edit(Id);
             return RedirectToPage("Report");
         }
-        public IActionResult OnPostSearch()
+        public IActionResult OnGetSearch(Report param)
         {
             Report report = new Report
             {
-                FromDate = this.FromDate,
-                ToDate = this.ToDate,
-                SearchStatus = this.SearchStatus,
+                FromDate = param.FromDate,
+                ToDate = param.ToDate,
+                SearchStatus = param.SearchStatus,
             };
 
             var searchResult = reportRepository.Search(report);
+            //return new JsonResult(searchResult);
+
+
             this.Billing = searchResult.Result.ToList();
-            //return new JsonResult(this.Billing);
             return Page();
+
         }
 
 
