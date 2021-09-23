@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="Amount">Amount</label><br>
-                    <input type="text" name="Amount" id="Amount" data-val="true" data-val-required="Amount is required">
+                    <input type="number" name="Amount" id="Amount" data-val="true" data-val-required="Amount is required">
                     <span asp-validation-for="Amount" class="text-danger"></span>
                 </div>
 
@@ -79,10 +79,10 @@
                     <p class="wrapper-payment">Payment Mode</p>
 
                     <ul style="padding-left: 40px;" >
-                        <li>  <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cash" data-val="true" data-val-required="Payment Mode is required">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
-                        <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Card">&nbsp; &nbsp; &nbsp; &nbsp;Card</li></a>
-                        <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Cheque">&nbsp; &nbsp; &nbsp; &nbsp;Cheque</li></a>
-                        <li>   <input class="r" type="radio" id="paymentMode" name="PaymentMode" value="Online">&nbsp; &nbsp; &nbsp; &nbsp;Online</li></a>
+                        <li>  <input class="r" type="radio" id="paymentModeCash" name="PaymentMode" value="Cash" data-val="true" data-val-required="Payment Mode is required">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
+                        <li>   <input class="r" type="radio" id="paymentModeCard" name="PaymentMode" value="Card">&nbsp; &nbsp; &nbsp; &nbsp;Card</li></a>
+                        <li>   <input class="r" type="radio" id="paymentModeCheque" name="PaymentMode" value="Cheque">&nbsp; &nbsp; &nbsp; &nbsp;Cheque</li></a>
+                        <li>   <input class="r" type="radio" id="paymentModeOnline" name="PaymentMode" value="Online">&nbsp; &nbsp; &nbsp; &nbsp;Online</li></a>
 
                     </ul><br>
                     <span asp-validation-for="PaymentMode" class="text-danger"></span>
@@ -111,5 +111,18 @@
                // e.preventDefault();
             });
         });
+        $("#resetBtn").click(function () {
+            $("#CustomerName").val("");
+            $("#Category").val(0);
+            $("#Mobile").val("");
+            $("#Session").val(0);
+            $("#Amount").val("");
+            $("#Status").val(0);
+            $("#paymentModeCash").prop("checked", false);
+            $("#paymentModeCard").prop("checked", false);
+            $("#paymentModeCheque").prop("checked", false);
+            $("#paymentModeOnline").prop("checked", false);
+        });
     });
+    
 </script >

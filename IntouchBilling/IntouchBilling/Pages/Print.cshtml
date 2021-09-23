@@ -41,7 +41,7 @@
                 <td>@Html.DisplayFor(m => m.billing.Amount)</td>
                 <br/>
                 @*<td><input type="text" name="" placeholder=" Rs : 750"></td>*@
-                <td>@Html.TextBoxFor(m => m.billing.Amount)</td>
+                @*<td>@Html.TextBoxFor(m => m.billing.Amount)</td>*@
                 <!--  <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a> -->
                 </td>
             </tr>
@@ -51,10 +51,10 @@
  </div >
 
 <div class="container pb-5">
-    <div class="row">
+    <div class="row hideData">
         <div class="col-md-12">
-            <a href=""><button class="btn" OnClick="window.print()">Print</button></a>&nbsp; &nbsp;
-            <a href="Report"><button class="submit" id="btnClose"> Cancel </button></a>
+            <a href=""><button style="width: 160px; border-radius: 30px; background-color: #2298ca; color: #fff; " onclick="printData()">Print</button></a>&nbsp; &nbsp;
+            <a href="Report"><button style="width: 160px; border-radius: 30px; background-color: #2298ca; color: #fff; " id="btnClose"> Cancel </button></a>
         </div>
     </div>
 </div>
@@ -67,4 +67,12 @@
             });
 
         });
+    function printData() {
+        //var divToPrint = document.getElementById('divPrint');
+
+        //Hide all other elements other than printarea.
+        $(".hideData").hide();
+        $("#divPrint").show();
+        window.print();
+    }
 </script>
