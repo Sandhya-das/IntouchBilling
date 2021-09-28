@@ -7,7 +7,7 @@
     <div class="row">
         <br>
     </div>
-   
+
     <form asp-page-handler="Search" method="post" style="padding-left: 20px; padding-right: 10px">
         @Html.AntiForgeryToken()
         <div class="row">
@@ -93,7 +93,7 @@
                 <tbody>
                     @foreach (var item in Model.Billing)
                     {
-                        
+
                         var tm = "#updateModal" + item.RegistrationId;
                         var mid = "updateModal" + item.RegistrationId;
                         var modalid = "#deleteModal" + item.RegistrationId;
@@ -195,14 +195,15 @@
                     }
                 </tbody>
             </table>
-            <div class="col-md-3">
-                <button id="printBtn" class="btnCls" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>
-                @*<button class="submit" asp-page-handler="Print" asp-items="" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>*@
 
-            </div>
         </div>
         <div><button hidden /></div>
     </form>
+    <div class="col-md-3">
+        <button id="printBtn" class="btnCls" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>
+        @*<button class="submit" asp-page-handler="Print" asp-items="" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>*@
+
+    </div>
 </div>
 <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
 <script src="~/js/jquery-3.2.1.slim.min.js"></script>
@@ -284,22 +285,29 @@
            
             var table = $("#dataList").DataTable();
             var result = table.rows(".selected").data();
+            
+           
             var dataString;
             $.each(result, function (i, val) {
                 dataString = result[i];
                 //alert(dataString);               
 
             });
+            if (dataString == null || dataString == undefined) {
+                alert("No record/s selected");
+                return;
+            }
          // var bill = get bill number here
-            $.ajax({
-                type: "POST",
-                url: "/Report?handler=Print",
-                data: { billnumber : bill },
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("XSRF-TOKEN",
-                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                },
-            });
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/Report?handler=Print",
+            //    data: { billnumber : bill },
+            //    beforeSend: function (xhr) {
+            //        xhr.setRequestHeader("XSRF-TOKEN",
+            //            $('input:hidden[name="__RequestVerificationToken"]').val());
+            //    },
+            //});
+            window.location.href = "/Print?BillNo=" + dataString[2];
         });
    
   
