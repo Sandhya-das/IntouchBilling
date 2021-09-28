@@ -43,6 +43,7 @@ namespace IntouchBilling.Pages
         [Required]
         public string Status { get; set; }
         public int UserId { get; set; }
+        public bool? Ischecked { get; set; }
 
         [Display(Name = "Date")]
         [DataType(DataType.Date)]

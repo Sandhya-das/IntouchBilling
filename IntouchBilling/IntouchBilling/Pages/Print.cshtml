@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-sm-4 pt-4 right">
                     <p>BILL NUMBER : @Html.DisplayFor(m => m.billing.BillNumber) </p>
-                    <p>Date &nbsp;&nbsp;&nbsp;&nbsp;: @Html.DisplayFor(m => m.billing.CreatedOn)</p>
-                    <p>Payment Mode &nbsp;&nbsp;&nbsp;&nbsp;: @Html.DisplayFor(m => m.billing.PaymentMode)</p>
+                    <p>Bill Dated on&nbsp;&nbsp;&nbsp;&nbsp;: </p>
+                    
                 </div>
                 <div class="col-sm-4 pt-4 pb-5 left ">
                     <p>Customer Name  &nbsp; : @Html.DisplayFor(m => m.billing.CustomerName)</p>
@@ -21,12 +21,14 @@
         </div>
     </div>
 
-    <table class="table">
+    <table class="table css-serial">
         <thead>
             <tr>
                 <th>Item</th>
+                @*<th>Date</th>*@
                 <th>Category</th>
                 <th>Session</th>
+                <th>Payment Mode</th>
                 <th>Amount</th>
                 <th>Total</th>
                 <th style="width: 50px;"></th>
@@ -34,17 +36,21 @@
         </thead>
         <tbody>
             <tr>
-                <td>1</td>
+                <td></td>
+                @*<td>@Html.DisplayFor(m => m.billing.CreatedOn)</td>*@
                 <td>@Html.DisplayFor(m => m.billing.Category)</td>
                 <td>@Html.DisplayFor(m => m.billing.Session)</td>
+                <td>@Html.DisplayFor(m => m.billing.PaymentMode)</td>
                 <td>@Html.DisplayFor(m => m.billing.Amount)</td>
                 <td>@Html.DisplayFor(m => m.billing.Amount)</td>
-                <br/>
-                @*<td><input type="text" name="" placeholder=" Rs : 750"></td>*@
-                @*<td>@Html.TextBoxFor(m => m.billing.Amount)</td>*@
-                <!--  <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a> -->
-                </td>
+
             </tr>
+            <tr><td></td></tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                @*<td><br/><input type="text" name="" placeholder=" Rs : @Html.DisplayFor(m => m.billing.Amount)"></td>*@
+            </tr>
+
         </tbody>
     </table>
     <hr style="background-color: #000;">
@@ -65,6 +71,14 @@
             document.getElementById("#btnClose").click(function () {
                 document.location.href = $(this).attr('Report.cshtml');
             });
+            var addSerialNumber = function () {
+                var i = 1
+                $('.table tr').each(function (index) {
+                    $(this).find('td:nth-child(1)').html(index + 1);
+                });
+            };
+
+            addSerialNumber();
 
         });
     function printData() {

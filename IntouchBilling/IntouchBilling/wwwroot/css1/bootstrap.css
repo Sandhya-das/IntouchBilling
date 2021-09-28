@@ -6276,6 +6276,15 @@ button.bg-dark:focus {
   content: "";
 }
 
+.css-serial {
+    counter-reset: serial-number; /* Set the serial number counter to 0 */
+}
+
+ .css-serial td:first-child:before {
+    counter-increment: serial-number; /* Increment the serial number counter */
+    content: counter(serial-number); /* Display the counter */
+}
+
 .d-none {
   display: none !important;
 }

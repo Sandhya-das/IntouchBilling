@@ -3,192 +3,207 @@
 @{
     Layout = "_Layout";
 }
-
-<div class="row">
-    <br>
-</div>
-<form asp-page-handler="Search" method="post" style="padding-left: 20px; padding-right: 10px">
-    @Html.AntiForgeryToken()
+<div>
     <div class="row">
-        @*<div class="col-sm-1">
-
-            </div>*@
-        <div class="col-md-3">
-            <label for="FromDate">From Date </label>
-            <br />
-            <input type="text" id="txtfromdate" name="FromDate">
-        </div>
-
-        <div class="col-md-3">
-            <label for="ToDate">To Date </label>
-            <br />
-            <input type="text" id="txttodate" name="ToDate">
-        </div>
-
-        <div class="col-md-3">
-            <label for="status"> Select Status  </label><br>
-            <select id="statusid" name="SearchStatus" class="ddlStyle">
-                <option value="All" selected>All</option>
-                <option value="Paid">Paid</option>
-                <option value="Pending">Pending</option>
-                <option value="Deleted">Deleted</option>
-            </select><br>
-        </div>
-
-        <div class="col-md-3">
-            <label for="status">  </label><br>
-            <button class="submit">Search</button>
-            @*<button class="button" id="searchBtn">Search</button>*@
-        </div>
+        <br>
     </div>
-</form>
+   
+    <form asp-page-handler="Search" method="post" style="padding-left: 20px; padding-right: 10px">
+        @Html.AntiForgeryToken()
+        <div class="row">
+            @*<div class="col-sm-1">
 
-<div class="row">
-    </br>
-</div>
-<div id="divTbl" style="height: 480px; overflow-y: scroll; padding-left: 20px; padding-right: 10px">
-    <table id="dataList" class="table table-striped table-bordered" style="width: 100%">
-        <thead class="thead-light">
-            <tr>
-                <th hidden class="sorting_asc_disabled">
-                    @Html.DisplayNameFor(model => model.Billing[0].RegistrationId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].BillNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].CustomerName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].Mobile)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].Session)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].Amount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].PaymentMode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].Status)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Billing[0].CreatedOn)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Billing)
-            {
-                var tm = "#updateModal" + item.RegistrationId;
-                var mid = "updateModal" + item.RegistrationId;
-                var modalid = "#deleteModal" + item.RegistrationId;
-                var dltmodalid = "deleteModal" + item.RegistrationId;
-                var pm = "#printModal" + item.RegistrationId;
-                var printmodalid = "printModal" + item.RegistrationId;
-                <tr>
-                    <td hidden>
-                        @Html.DisplayFor(modelItem => item.RegistrationId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BillNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Mobile)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Session)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PaymentMode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Status)
-                    </td>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.CreatedOn)*@
-                        @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedOn))
+                </div>*@
+            <div class="col-md-3">
 
-                    </td>
-                    <td>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <form asp-page-handler="Print" method="post" asp-route-Id="@item.RegistrationId">
-                                    <button class="submit" title="print this bill details" style="width: min-content; background-color: white; "><i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>
-                                </form>
-                            </div>
-                            <div class="col-md-3">
+                <label for="FromDate">From Date </label>
+                <br />
+                <input type="text" id="txtfromdate" name="FromDate">
+            </div>
 
-                                <button type="button" class="submit" title="Set Status as Paid" style="width: min-content; background-color: white;" data-toggle="modal" data-target="@tm">
-                                    @* Update Status*@ <i aria-hidden='true' class='glyphicon glyphicon-pencil'></i>
-                                </button>
+            <div class="col-md-3">
+                <label for="ToDate">To Date </label>
+                <br />
+                <input type="text" id="txttodate" name="ToDate">
+            </div>
 
-                                <div class="modal fade" id="@mid" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top: 10%;">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Update Confirmation</h4>
+            <div class="col-md-3">
+                <label for="status"> Select Status  </label><br>
+                <select id="statusid" name="SearchStatus" class="ddlStyle">
+                    <option value="All" selected>All</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Deleted">Deleted</option>
+                </select><br>
+            </div>
+
+            <div class="col-md-3">
+                <label for="status">  </label><br>
+                <button class="submit">Search</button>
+                @*<button class="button" id="searchBtn">Search</button>*@
+            </div>
+        </div>
+    </form>
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="row">
+            </br>
+        </div>
+        <div id="divTbl" style="height: 480px; overflow-y: scroll; padding-left: 20px; padding-right: 10px">
+            <table id="dataList" class="table table-striped table-bordered" style="width: 100%">
+                <thead class="thead-light">
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th hidden class="sorting_asc_disabled">
+                            @Html.DisplayNameFor(model => model.Billing[0].RegistrationId)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].BillNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].CustomerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].Mobile)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].Session)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].Amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].PaymentMode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Billing[0].CreatedOn)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Billing)
+                    {
+                        var bill = item;
+                        var status = item.Status;
+                        var tm = "#updateModal" + item.RegistrationId;
+                        var mid = "updateModal" + item.RegistrationId;
+                        var modalid = "#deleteModal" + item.RegistrationId;
+                        var dltmodalid = "deleteModal" + item.RegistrationId;
+                        var pm = "#printModal" + item.RegistrationId;
+                        var printmodalid = "printModal" + item.RegistrationId;
+                        <tr>
+                            <td></td>
+                            <td hidden name="RegistrationId">
+                                @Html.DisplayFor(modelItem => item.RegistrationId)
+                            </td>
+
+                            <td name="BillNumber">
+                                @Html.DisplayFor(modelItem => item.BillNumber)
+                            </td>
+                            <td name="Category">
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td name="CustomerName">
+                                @Html.DisplayFor(modelItem => item.CustomerName)
+                            </td>
+                            <td name="Mobile">
+                                @Html.DisplayFor(modelItem => item.Mobile)
+                            </td>
+                            <td name="Session">
+                                @Html.DisplayFor(modelItem => item.Session)
+                            </td>
+                            <td name="Amount">
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td name="PaymentMode">
+                                @Html.DisplayFor(modelItem => item.PaymentMode)
+                            </td>
+                            <td name="Status">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td name="CreatedOn">
+                                @*@Html.DisplayFor(modelItem => item.CreatedOn)*@
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedOn))
+
+                            </td>
+                            <td>
+                                <div class="row">
+
+                                    <div class="col-md-3">
+
+                                        <button type="button" class="submit" title="Set Status as Paid" style="width: min-content; background-color: white;" data-toggle="modal" data-target="@tm">
+                                            @* Update Status*@ <i aria-hidden='true' class='glyphicon glyphicon-pencil'></i>
+                                        </button>
+
+                                        <div class="modal fade" id="@mid" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top: 10%;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">Update Confirmation</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure want to update the payment status as Paid?
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <button class="btnCls" type="submit" asp-page-handler="Update" asp-route-Id="@item.RegistrationId">Update</button>
+                                                        <button type="button" class="submit" data-dismiss="modal">Close</button>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                Are you sure want to update the payment status as Paid?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form asp-page-handler="Update" method="post" asp-route-Id="@item.RegistrationId">
-                                                    <button class="btnCls" type="submit">Update</button>
-                                                    <button type="button" class="submit" data-dismiss="modal">Close</button>
-                                                </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="button" class="submit" title="Set Status as Deleted" data-toggle="modal" style="width :min-content; background-color:white;" data-target="@modalid">
+                                            @*Delete*@<i aria-hidden='true' class='glyphicon glyphicon-trash'></i>
+                                        </button>
+
+                                        <div class="modal fade" id="@dltmodalid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top: 10%;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure want to delete this item?
+                                                    </div>
+                                                    <div class="modal-footer">
+
+                                                        <button class="btnCls" asp-page-handler="Delete" asp-route-Id="@item.RegistrationId" type="submit">Delete</button>
+                                                        <button type="button" class="submit" data-dismiss="modal">Close</button>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="button" class="submit" title="Set Status as Deleted" data-toggle="modal" style="width :min-content; background-color:white;" data-target="@modalid">
-                                    @*Delete*@<i aria-hidden='true' class='glyphicon glyphicon-trash'></i>
-                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="col-md-3">
+                <button id="printBtn" class="btnCls" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>
+                @*<button class="submit" asp-page-handler="Print" asp-items="" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>*@
 
-                                <div class="modal fade" id="@dltmodalid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top: 10%;">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="submit" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure want to delete this item?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form asp-page-handler="Delete" method="post" asp-route-Id="@item.RegistrationId">
-                                                    <button class="btnCls" type="submit">Delete</button>
-                                                    <button type="button" class="submit" data-dismiss="modal">Close</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+            </div>
+        </div>
+        <div><button hidden /></div>
+    </form>
 </div>
 <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
 <script src="~/js/jquery-3.2.1.slim.min.js"></script>
@@ -196,11 +211,22 @@
 <script src="~/js/jquery.validate.js"></script>
 <script src="~/js/jquery-ui.js"></script>
 
+<script src="~/js/DataTables/dataTables.select.js"></script>
+
 <script>
+    
     $(document).ready(function () {
 
         $('#dataList').dataTable({
-            "order": [1, 'desc']
+            "columnDefs": [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            "select": {
+                style: 'multi',
+                selector: 'td:first-child'
+            }, "order": [1, 'desc']
         });
 
         $("#txtfromdate").datepicker(
@@ -218,43 +244,61 @@
                 changeYear: true,
                 yearRange: '1950:2100'
             }).datepicker("setDate", "0");
+    });
 
-
-    $("#searchBtn").click(function () {
-        var dataString = $(this).serialize();
-        $.ajax({
-            type: "GET",
-            url: "/Report?handler=Search",
-            data: { param: dataString },
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("XSRF-TOKEN",
-                    $('input:hidden[name="__RequestVerificationToken"]').val());
-            },
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success:
-               /* $.getJSON("/Report?handler=Search",*/
-                function (result) {                                     
-                    $('#dataList').empty();
-                    var tr;
-                        //Append each row to html table  
-                    for (var i = 0; i < result.length; i++) {
+        $("#searchBtn").click(function () {
+            var dataString = $(this).serialize();
+            $.ajax({
+                type: "GET",
+                url: "/Report?handler=Search",
+                data: { param: dataString },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success:
+                    /* $.getJSON("/Report?handler=Search",*/
+                    function (response) {
+                        $('#dataList').empty();
+                        var tr;
+                        //Append each row to html table
+                        $.each(response, function (i, item) {
                             tr = $('<tr/>');
-                            tr.append("<td>" + result[i].registrationId + "</td>");
-                            tr.append("<td>" + result[i].billNumber + "</td>");
-                            tr.append("<td>" + result[i].category + "</td>");
-                            tr.append("<td>" + result[i].customerName + "</td>");
-                            tr.append("<td>" + result[i].mobile + "</td>");
-                            tr.append("<td>" + result[i].session + "</td>");
-                            tr.append("<td>" + result[i].amount + "</td>");
-                            tr.append("<td>" + result[i].paymentMode + "</td>");
-                            tr.append("<td>" + result[i].status + "</td>");
+                            tr.append("<td>" + item.registrationId + "</td>");
+                            tr.append("<td>" + item.billNumber + "</td>");
+                            tr.append("<td>" + item.category + "</td>");
+                            tr.append("<td>" + item.customerName + "</td>");
+                            tr.append("<td>" + item.mobile + "</td>");
+                            tr.append("<td>" + item.session + "</td>");
+                            tr.append("<td>" + item.amount + "</td>");
+                            tr.append("<td>" + item.paymentMode + "</td>");
+                            tr.append("<td>" + item.status + "</td>");
                             $('#dataList').append(tr);
-                        }
-                    }
-              // ),
+                        });
+               }
+            });
         });
-   });
-});
 
+        $('#printBtn').click(function () {
+            //e.preventdefault();
+            var result = $("#dataList").DataTable().rows(".selected").data();
+            alert(result);
+
+
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/Report?handler=Print",
+            //    data: JSON.stringify(tblrow),
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    beforeSend: function (xhr) {
+            //        xhr.setRequestHeader("XSRF-TOKEN",
+            //            $('input:hidden[name="__RequestVerificationToken"]').val());
+            //    },
+            //});
+        });
+   
+  
 </script>

@@ -62,30 +62,34 @@ namespace IntouchBilling.Pages
             var result = billingRepository.Edit(Id);
             return RedirectToPage("Report");
         }
-        public IActionResult OnGetSearch(Report param)
+        public IActionResult OnPostSearch()
         {
             Report report = new Report
             {
-                FromDate = param.FromDate,
-                ToDate = param.ToDate,
-                SearchStatus = param.SearchStatus,
+                FromDate = this.FromDate,
+                ToDate = this.ToDate,
+                SearchStatus = this.SearchStatus,
             };
 
             var searchResult = reportRepository.Search(report);
             //return new JsonResult(searchResult);
-
 
             this.Billing = searchResult.Result.ToList();
             return Page();
 
         }
 
-
-        public IActionResult OnPostPrint(int id)
+        public IActionResult OnPostPrint()
         {
-            int printId = id;
-           
-            return RedirectToPage("Print", new { id = printId });
+            
+            return RedirectToPage("Print", new {  });
         }
+
+        //public IActionResult OnPostPrint(int id)
+        //{
+        //    int printId = id;
+
+        //    return RedirectToPage("Print", new { Id= printId });
+        //}
     }
 }

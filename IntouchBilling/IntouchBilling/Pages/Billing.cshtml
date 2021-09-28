@@ -1,6 +1,4 @@
-﻿
-
-@page
+﻿@page
 
 @model IntouchBilling.Pages.BillingModel
 @{
@@ -78,7 +76,7 @@
                 <div class="col-md-12">
                     <p class="wrapper-payment">Payment Mode</p>
 
-                    <ul style="padding-left: 40px;" >
+                    <ul style="padding-left: 40px;">
                         <li>  <input class="r" type="radio" id="paymentModeCash" name="PaymentMode" value="Cash" data-val="true" data-val-required="Payment Mode is required">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
                         <li>   <input class="r" type="radio" id="paymentModeCard" name="PaymentMode" value="Card">&nbsp; &nbsp; &nbsp; &nbsp;Card</li></a>
                         <li>   <input class="r" type="radio" id="paymentModeCheque" name="PaymentMode" value="Cheque">&nbsp; &nbsp; &nbsp; &nbsp;Cheque</li></a>
@@ -87,8 +85,8 @@
                     </ul><br>
                     <span asp-validation-for="PaymentMode" class="text-danger"></span>
                     <div class="pt-2">
-                        <a href=""><button class="submit">Save</button></a>&nbsp; &nbsp;
-                        @*<a href="#Billing"><button class="btnCls" id="resetBtn">Cancel</button></a>*@
+                        <button class="submit">Save</button>&nbsp; &nbsp;
+                        <button class="btnCls" id="resetBtn">Cancel</button>
                     </div>
 
                 </div>
@@ -104,13 +102,26 @@
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 <script>
-    
+
     $(document).ready(function () {
-        $(function () {
-            $('#myform').on('submit', function (e) {
-               // e.preventDefault();
-            });
+       
+            //$('#myform').on('submit', function (e) {
+            //     //e.preventDefault();
+            //});
+       
+        $("#resetBtn").click(function () {
+            e.preventDefault();
+            $("#CustomerName").val("");
+            $("#Category").val(0);
+            $("#Mobile").val("");
+            $("#Session").val(0);
+            $("#Amount").val("");
+            $("#Status").val(0);
+            $("#paymentModeCash").prop("checked", false);
+            $("#paymentModeCard").prop("checked", false);
+            $("#paymentModeCheque").prop("checked", false);
+            $("#paymentModeOnline").prop("checked", false);
         });
     });
-    
-</script >
+
+</script>

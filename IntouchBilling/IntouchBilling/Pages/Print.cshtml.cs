@@ -19,6 +19,8 @@ namespace IntouchBilling.Pages
 
         public string BillNumber { get; set; }
 
+        public bool Ischecked { get; set; }
+
         [BindProperty]
         public Billing billing { get; set; }
 
