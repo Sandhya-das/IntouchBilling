@@ -25,22 +25,24 @@ namespace IntouchBilling.Pages
         public Billing billing { get; set; }
 
         private readonly IBillingRepository billingRepository;
+
+        [BindProperty]
         public List<Billing> BillData { get; set; }
         public PrintModel(IBillingRepository billingRepository, IHostingEnvironment environment)
         {
             this.billingRepository = billingRepository;
             _environment = environment;
         }
-        public IActionResult OnGet(int id)
+       
+        public IActionResult OnGet( string BillNo)
         {
             if (HttpContext.Session.GetString("username") == null)
             {
                 return RedirectToPage("Login");
             }
-            
-            int RegId = id;
-            var bill = billingRepository.GetAllBillById(RegId);
-            this.billing = bill.Result;
+
+            var billdetails = billingRepository.GetAllBillByBillNumber(BillNo);
+            List<Billing> bill = billdetails.Result.ToList();
             return Page();
         }
         public IActionResult OnPost()

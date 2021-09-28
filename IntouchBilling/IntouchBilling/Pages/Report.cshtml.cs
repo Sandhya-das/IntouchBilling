@@ -79,10 +79,9 @@ namespace IntouchBilling.Pages
 
         }
 
-        public IActionResult OnPostPrint()
-        {
-            
-            return RedirectToPage("Print", new {  });
+        public IActionResult OnPostPrint(string billnumber)
+        {            
+            return RedirectToPage("Print", new { BillNo = billnumber });
         }
 
         //public IActionResult OnPostPrint(int id)

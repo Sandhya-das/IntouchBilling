@@ -72,7 +72,7 @@
                 document.location.href = $(this).attr('Report.cshtml');
             });
             var addSerialNumber = function () {
-                var i = 1
+                var i = 0
                 $('.table tr').each(function (index) {
                     $(this).find('td:nth-child(1)').html(index + 1);
                 });

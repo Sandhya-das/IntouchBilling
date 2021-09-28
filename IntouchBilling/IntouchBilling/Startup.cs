@@ -41,10 +41,10 @@ namespace IntouchBilling
             services.AddDbContext<IntouchBillingContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("IntouchBillingContext")));
             services.AddSession();
-
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+            
             
             //services.AddMvc().AddRazorPagesOptions(options =>
             //{

@@ -77,5 +77,13 @@ namespace IntouchBilling.Repository
             return BillData;
         }
 
+        public async Task<IEnumerable<Billing>> GetAllBillByBillNumber(string BillNumber)
+        {
+            var dbparams = new DynamicParameters();
+            dbparams.Add("billNumber", BillNumber, DbType.String);
+            List<Billing> billList =new List<Billing>();
+            billList = await Task.FromResult(_dapperService.GetAll<Billing>("[dbo].[GetAllBillByBillNumber]", dbparams, commandType: CommandType.StoredProcedure));
+            return billList;
+        }
     }
 }

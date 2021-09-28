@@ -93,8 +93,7 @@
                 <tbody>
                     @foreach (var item in Model.Billing)
                     {
-                        var bill = item;
-                        var status = item.Status;
+                        
                         var tm = "#updateModal" + item.RegistrationId;
                         var mid = "updateModal" + item.RegistrationId;
                         var modalid = "#deleteModal" + item.RegistrationId;
@@ -249,9 +248,9 @@
         $("#searchBtn").click(function () {
             var dataString = $(this).serialize();
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "/Report?handler=Search",
-                data: { param: dataString },
+                data: { dataString },
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader("XSRF-TOKEN",
                         $('input:hidden[name="__RequestVerificationToken"]').val());
@@ -282,22 +281,25 @@
         });
 
         $('#printBtn').click(function () {
-            //e.preventdefault();
-            var result = $("#dataList").DataTable().rows(".selected").data();
-            alert(result);
+           
+            var table = $("#dataList").DataTable();
+            var result = table.rows(".selected").data();
+            var dataString;
+            $.each(result, function (i, val) {
+                dataString = result[i];
+                //alert(dataString);               
 
-
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/Report?handler=Print",
-            //    data: JSON.stringify(tblrow),
-            //    contentType: "application/json; charset=utf-8",
-            //    dataType: "json",
-            //    beforeSend: function (xhr) {
-            //        xhr.setRequestHeader("XSRF-TOKEN",
-            //            $('input:hidden[name="__RequestVerificationToken"]').val());
-            //    },
-            //});
+            });
+         // var bill = get bill number here
+            $.ajax({
+                type: "POST",
+                url: "/Report?handler=Print",
+                data: { billnumber : bill },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+            });
         });
    
   

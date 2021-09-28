@@ -13,6 +13,6 @@ namespace IntouchBilling.Repository
         Task<IEnumerable<Billing>> Edit(int id);
         Task<IEnumerable<Billing>> Delete(int id);
         Task<Billing> GetAllBillById(int id);
-
+        Task<IEnumerable<Billing>> GetAllBillByBillNumber(string BillNumber);
     }
 }
