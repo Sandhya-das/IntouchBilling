@@ -288,13 +288,23 @@
             
            
             var dataString;
+            var billNo = "";
+            var isDiffBill = 0;
+
             $.each(result, function (i, val) {
                 dataString = result[i];
-                //alert(dataString);               
+                if (i > 0 && billNo != dataString[2]) {
+                     isDiffBill = 1;
+                }
+                billNo = dataString[2];
 
             });
             if (dataString == null || dataString == undefined) {
                 alert("No record/s selected");
+                return;
+            }
+            if (isDiffBill == 1) {
+                alert("Please select same bill no.");
                 return;
             }
          // var bill = get bill number here
