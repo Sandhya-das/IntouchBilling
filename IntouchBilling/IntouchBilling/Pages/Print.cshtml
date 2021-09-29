@@ -8,85 +8,90 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-sm-4 pt-4 right">
-                    <p>BILL NUMBER : @Html.DisplayFor(m => m.billing.BillNumber) </p>
-                    <p>Bill Dated on&nbsp;&nbsp;&nbsp;&nbsp;: </p>
-                    
+                    <p><i>Bill No. :</i>&nbsp;&nbsp; @Html.DisplayFor(model => model.BillData[0].BillNumber) </p>
+                    <p><i>Bill Dated On : </i>&nbsp;&nbsp;@System.DateTime.Today.ToShortDateString()   </p>
+
                 </div>
                 <div class="col-sm-4 pt-4 pb-5 left ">
-                    <p>Customer Name  &nbsp; : @Html.DisplayFor(m => m.billing.CustomerName)</p>
-                    <p>Mobile Number  &nbsp;&nbsp; : @Html.DisplayFor(m => m.billing.Mobile) </p >
+                    <p><i>Customer Name :</i> &nbsp;&nbsp;@Html.DisplayFor(model => model.BillData[0].CustomerName)</p>
+                    <p><i>Mobile Number :</i> &nbsp;&nbsp;@Html.DisplayFor(model => model.BillData[0].Mobile) </p>
                 </div>
             </div>
             <hr style="background-color: #000; position: relative;top: 10px;">
         </div>
     </div>
 
-    <table class="table css-serial">
+    <table class="table">
         <thead>
             <tr>
-                <th>Item</th>
-                @*<th>Date</th>*@
+                <th>Date</th>
                 <th>Category</th>
                 <th>Session</th>
                 <th>Payment Mode</th>
                 <th>Amount</th>
-                <th>Total</th>
                 <th style="width: 50px;"></th>
             </tr>
         </thead>
         <tbody>
+            @foreach (var item in Model.BillData)
+            {
+
             <tr>
-                <td></td>
-                @*<td>@Html.DisplayFor(m => m.billing.CreatedOn)</td>*@
-                <td>@Html.DisplayFor(m => m.billing.Category)</td>
-                <td>@Html.DisplayFor(m => m.billing.Session)</td>
-                <td>@Html.DisplayFor(m => m.billing.PaymentMode)</td>
-                <td>@Html.DisplayFor(m => m.billing.Amount)</td>
-                <td>@Html.DisplayFor(m => m.billing.Amount)</td>
+               
+                <td>@Convert.ToDateTime(item.CreatedOn).ToString("dd/MM/yyyy")</td>
+                <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                <td>@Html.DisplayFor(modelItem => item.Session)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaymentMode)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
 
             </tr>
-            <tr><td></td></tr>
-            <tr>
-                <td>&nbsp;&nbsp;&nbsp;</td>
-                @*<td><br/><input type="text" name="" placeholder=" Rs : @Html.DisplayFor(m => m.billing.Amount)"></td>*@
-            </tr>
-
+            }
         </tbody>
-    </table>
-    <hr style="background-color: #000;">
- </div >
+        <tfoot>
 
-<div class="container pb-5">
-    <div class="row hideData">
-        <div class="col-md-12">
-            <a href=""><button style="width: 160px; border-radius: 30px; background-color: #2298ca; color: #fff; " onclick="printData()">Print</button></a>&nbsp; &nbsp;
-            <a href="Report"><button style="width: 160px; border-radius: 30px; background-color: #2298ca; color: #fff; " id="btnClose"> Cancel </button></a>
-        </div>
+        </tfoot>
+    </table>
+    
+</div>
+<hr style="background-color: #000;" />
+<div class="row">
+
+    <div class="col-9" style="text-align:right"><b>GRAND TOTAL :&nbsp;&nbsp;</b></div>
+    <div class="col-3">
+        &nbsp; <b>Rs.  @Model.BillData.Sum(item => item.Amount)</b>
     </div>
 </div>
+    <div class="container pb-5">
+        <div class="row hideData">
+            <div class="col-md-12">
+                <a href=""><button style="width: 160px; border-radius: 30px; background-color: #2298ca; color: #fff; " onclick="printData()">Print</button></a>&nbsp; &nbsp;
+                <a href="Report"><button style="width: 160px; border-radius: 30px; background-color: #2298ca; color: #fff; " id="btnClose"> Cancel </button></a>
+            </div>
+        </div>
+    </div>
 
-<script>
+    <script>
         $(document).ready(function () {
 
             document.getElementById("#btnClose").click(function () {
                 document.location.href = $(this).attr('Report.cshtml');
             });
-            var addSerialNumber = function () {
-                var i = 0
-                $('.table tr').each(function (index) {
-                    $(this).find('td:nth-child(1)').html(index + 1);
-                });
-            };
+            //var addSerialNumber = function () {
+            //    var i = 0
+            //    $('.table tr').each(function (index) {
+            //        $(this).find('td:nth-child(1)').html(index + 1);
+            //    });
+            //};
 
-            addSerialNumber();
+            //addSerialNumber();
 
         });
-    function printData() {
-        //var divToPrint = document.getElementById('divPrint');
+        function printData() {
+            //var divToPrint = document.getElementById('divPrint');
 
-        //Hide all other elements other than printarea.
-        $(".hideData").hide();
-        $("#divPrint").show();
-        window.print();
-    }
-</script>
+            //Hide all other elements other than printarea.
+            $(".hideData").hide();
+            $("#divPrint").show();
+            window.print();
+        }
+    </script>

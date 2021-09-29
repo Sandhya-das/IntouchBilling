@@ -4,29 +4,18 @@
     Layout = "_Layout";
 }
 <div>
-    <div class="row">
-        <br>
-    </div>
-
+    <div class="row"><br /> </div>
     <form asp-page-handler="Search" method="post" style="padding-left: 20px; padding-right: 10px">
         @Html.AntiForgeryToken()
         <div class="row">
-            @*<div class="col-sm-1">
-
-                </div>*@
             <div class="col-md-3">
-
-                <label for="FromDate">From Date </label>
-                <br />
+                <label for="FromDate">From Date </label><br />
                 <input type="text" id="txtfromdate" name="FromDate">
             </div>
-
             <div class="col-md-3">
-                <label for="ToDate">To Date </label>
-                <br />
+                <label for="ToDate">To Date </label><br />
                 <input type="text" id="txttodate" name="ToDate">
             </div>
-
             <div class="col-md-3">
                 <label for="status"> Select Status  </label><br>
                 <select id="statusid" name="SearchStatus" class="ddlStyle">
@@ -46,20 +35,15 @@
     </form>
     <form method="post">
         @Html.AntiForgeryToken()
-        <div class="row">
-            </br>
-        </div>
+        <div class="row"><br /></div>
         <div id="divTbl" style="height: 480px; overflow-y: scroll; padding-left: 20px; padding-right: 10px">
             <table id="dataList" class="table table-striped table-bordered" style="width: 100%">
                 <thead class="thead-light">
                     <tr>
-                        <th>
-
-                        </th>
+                        <th></th>
                         <th hidden class="sorting_asc_disabled">
                             @Html.DisplayNameFor(model => model.Billing[0].RegistrationId)
                         </th>
-
                         <th>
                             @Html.DisplayNameFor(model => model.Billing[0].BillNumber)
                         </th>
@@ -93,7 +77,6 @@
                 <tbody>
                     @foreach (var item in Model.Billing)
                     {
-
                         var tm = "#updateModal" + item.RegistrationId;
                         var mid = "updateModal" + item.RegistrationId;
                         var modalid = "#deleteModal" + item.RegistrationId;
@@ -102,48 +85,43 @@
                         var printmodalid = "printModal" + item.RegistrationId;
                         <tr>
                             <td></td>
-                            <td hidden name="RegistrationId">
+                            <td hidden>
                                 @Html.DisplayFor(modelItem => item.RegistrationId)
                             </td>
 
-                            <td name="BillNumber">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.BillNumber)
                             </td>
-                            <td name="Category">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Category)
                             </td>
-                            <td name="CustomerName">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.CustomerName)
                             </td>
-                            <td name="Mobile">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Mobile)
                             </td>
-                            <td name="Session">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Session)
                             </td>
-                            <td name="Amount">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Amount)
                             </td>
-                            <td name="PaymentMode">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.PaymentMode)
                             </td>
-                            <td name="Status">
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td name="CreatedOn">
-                                @*@Html.DisplayFor(modelItem => item.CreatedOn)*@
+                            <td>
                                 @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.CreatedOn))
-
                             </td>
                             <td>
                                 <div class="row">
-
                                     <div class="col-md-3">
-
                                         <button type="button" class="submit" title="Set Status as Paid" style="width: min-content; background-color: white;" data-toggle="modal" data-target="@tm">
                                             @* Update Status*@ <i aria-hidden='true' class='glyphicon glyphicon-pencil'></i>
                                         </button>
-
                                         <div class="modal fade" id="@mid" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top: 10%;">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -155,10 +133,8 @@
                                                         Are you sure want to update the payment status as Paid?
                                                     </div>
                                                     <div class="modal-footer">
-
                                                         <button class="btnCls" type="submit" asp-page-handler="Update" asp-route-Id="@item.RegistrationId">Update</button>
                                                         <button type="button" class="submit" data-dismiss="modal">Close</button>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,7 +144,6 @@
                                         <button type="button" class="submit" title="Set Status as Deleted" data-toggle="modal" style="width :min-content; background-color:white;" data-target="@modalid">
                                             @*Delete*@<i aria-hidden='true' class='glyphicon glyphicon-trash'></i>
                                         </button>
-
                                         <div class="modal fade" id="@dltmodalid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top: 10%;">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -180,10 +155,8 @@
                                                         Are you sure want to delete this item?
                                                     </div>
                                                     <div class="modal-footer">
-
                                                         <button class="btnCls" asp-page-handler="Delete" asp-route-Id="@item.RegistrationId" type="submit">Delete</button>
                                                         <button type="button" class="submit" data-dismiss="modal">Close</button>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,14 +168,11 @@
                     }
                 </tbody>
             </table>
-
         </div>
         <div><button hidden /></div>
     </form>
     <div class="col-md-3">
         <button id="printBtn" class="btnCls" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>
-        @*<button class="submit" asp-page-handler="Print" asp-items="" title="print this bill details"> PRINT &nbsp;<i aria-hidden='true' class="glyphicon glyphicon-print"></i></button>*@
-
     </div>
 </div>
 <link href="~/css/jquery-ui.min.css" rel="stylesheet" />
@@ -210,11 +180,11 @@
 <script src="~/js/jquery-1.10.2.js"></script>
 <script src="~/js/jquery.validate.js"></script>
 <script src="~/js/jquery-ui.js"></script>
-
+<script src="~/js/DataTables/jquery.dataTables.min.js"></script>
 <script src="~/js/DataTables/dataTables.select.js"></script>
 
 <script>
-    
+
     $(document).ready(function () {
 
         $('#dataList').dataTable({
@@ -246,79 +216,77 @@
             }).datepicker("setDate", "0");
     });
 
-        $("#searchBtn").click(function () {
-            var dataString = $(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "/Report?handler=Search",
-                data: { dataString },
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("XSRF-TOKEN",
-                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                },
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success:
-                    /* $.getJSON("/Report?handler=Search",*/
-                    function (response) {
-                        $('#dataList').empty();
-                        var tr;
-                        //Append each row to html table
-                        $.each(response, function (i, item) {
-                            tr = $('<tr/>');
-                            tr.append("<td>" + item.registrationId + "</td>");
-                            tr.append("<td>" + item.billNumber + "</td>");
-                            tr.append("<td>" + item.category + "</td>");
-                            tr.append("<td>" + item.customerName + "</td>");
-                            tr.append("<td>" + item.mobile + "</td>");
-                            tr.append("<td>" + item.session + "</td>");
-                            tr.append("<td>" + item.amount + "</td>");
-                            tr.append("<td>" + item.paymentMode + "</td>");
-                            tr.append("<td>" + item.status + "</td>");
-                            $('#dataList').append(tr);
-                        });
-               }
-            });
-        });
-
-        $('#printBtn').click(function () {
-           
-            var table = $("#dataList").DataTable();
-            var result = table.rows(".selected").data();
-            
-           
-            var dataString;
-            var billNo = "";
-            var isDiffBill = 0;
-
-            $.each(result, function (i, val) {
-                dataString = result[i];
-                if (i > 0 && billNo != dataString[2]) {
-                     isDiffBill = 1;
+    $("#searchBtn").click(function () {
+        var dataString = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "/Report?handler=Search",
+            data: { dataString },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success:
+                /* $.getJSON("/Report?handler=Search",*/
+                function (response) {
+                    $('#dataList').empty();
+                    var tr;
+                    //Append each row to html table
+                    $.each(response, function (i, item) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + item.registrationId + "</td>");
+                        tr.append("<td>" + item.billNumber + "</td>");
+                        tr.append("<td>" + item.category + "</td>");
+                        tr.append("<td>" + item.customerName + "</td>");
+                        tr.append("<td>" + item.mobile + "</td>");
+                        tr.append("<td>" + item.session + "</td>");
+                        tr.append("<td>" + item.amount + "</td>");
+                        tr.append("<td>" + item.paymentMode + "</td>");
+                        tr.append("<td>" + item.status + "</td>");
+                        $('#dataList').append(tr);
+                    });
                 }
-                billNo = dataString[2];
-
-            });
-            if (dataString == null || dataString == undefined) {
-                alert("No record/s selected");
-                return;
-            }
-            if (isDiffBill == 1) {
-                alert("Please select same bill no.");
-                return;
-            }
-         // var bill = get bill number here
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/Report?handler=Print",
-            //    data: { billnumber : bill },
-            //    beforeSend: function (xhr) {
-            //        xhr.setRequestHeader("XSRF-TOKEN",
-            //            $('input:hidden[name="__RequestVerificationToken"]').val());
-            //    },
-            //});
-            window.location.href = "/Print?BillNo=" + dataString[2];
         });
-   
-  
+    });
+
+    $('#printBtn').click(function () {
+
+        var table = $("#dataList").DataTable();
+        var result = table.rows(".selected").data();
+
+        var dataString;
+        var billNo = "";
+        var isDiffBill = 0;
+        var IsPending = 0;
+
+        $.each(result, function (i, val) {
+            dataString = result[i];
+            if (i > 0 && billNo != dataString[2]) {
+                isDiffBill = 1;
+            }
+            billNo = dataString[2];
+
+            if (dataString[9] == 'Pending' || dataString[9] == 'Deleted') {
+                IsPending = 1;
+            }
+        });
+
+        if (dataString == null || dataString == undefined) {
+            alert("No record/s selected");
+            return;
+        }
+        if (isDiffBill == 1) {
+            alert("Please select same bill no.");
+            return;
+        }
+        if (IsPending == 1) {
+            alert("Please update the status first!");
+            return;
+        }
+        window.location.href = "/Print?BillNo=" + dataString[2];
+    });
+
+
 </script>

@@ -20,24 +20,19 @@
                     </select><br>
                     <span asp-validation-for="Category" class="text-danger"></span>
                 </div>
-
                 <div class="col-md-3">
                     <label for="CustomerName">Customer Name</label><br>
                     <input type="text" name="CustomerName" id="CustomerName" data-val="true" data-val-required="Name is required">
                     <span asp-validation-for="CustomerName" class="text-danger"></span>
                 </div>
-
                 <div class="col-md-3">
                     <label for="Mobile">Mobile</label><br>
                     <input type="text" name="Mobile" id="Mobile" data-val="true" data-val-required="Mobile is required">
                     <span asp-validation-for="Mobile" class="text-danger"></span>
                 </div>
                 <div class="col-md-3">
-
-
                 </div>
                 </br>
-
                 <div class="col-md-3">
                     <label for="Session" style="color: #000;">Session</label><br>
                     <select id="Session" name="Session" class="ddlStyle" data-val="true" data-val-required="Session is required">
@@ -66,50 +61,33 @@
                 </div>
 
             </div>
-
-
-
         </div>
-
         <div class="container wrapper-radio pt-3">
             <div class="row">
                 <div class="col-md-12">
                     <p class="wrapper-payment">Payment Mode</p>
-
                     <ul style="padding-left: 40px;">
                         <li>  <input class="r" type="radio" id="paymentModeCash" name="PaymentMode" value="Cash" data-val="true" data-val-required="Payment Mode is required">&nbsp; &nbsp; &nbsp; &nbsp;Cash</li></a>
                         <li>   <input class="r" type="radio" id="paymentModeCard" name="PaymentMode" value="Card">&nbsp; &nbsp; &nbsp; &nbsp;Card</li></a>
                         <li>   <input class="r" type="radio" id="paymentModeCheque" name="PaymentMode" value="Cheque">&nbsp; &nbsp; &nbsp; &nbsp;Cheque</li></a>
                         <li>   <input class="r" type="radio" id="paymentModeOnline" name="PaymentMode" value="Online">&nbsp; &nbsp; &nbsp; &nbsp;Online</li></a>
-
                     </ul><br>
                     <span asp-validation-for="PaymentMode" class="text-danger"></span>
                     <div class="pt-2">
                         <button class="submit">Save</button>&nbsp; &nbsp;
                         <button class="btnCls" id="resetBtn">Cancel</button>
                     </div>
-
                 </div>
-
             </div>
-
-
         </div>
-
     </div>
 </form>
 
-<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-<script>
 
+<script>
     $(document).ready(function () {
-       
-            //$('#myform').on('submit', function (e) {
-            //     //e.preventDefault();
-            //});
-       
-        $("#resetBtn").click(function () {
+        $('#resetBtn').click(function (e) {
+            e.preventDefault();
             $("#CustomerName").val("");
             $("#Category").val(0);
             $("#Mobile").val("");
@@ -122,5 +100,4 @@
             $("#paymentModeOnline").prop("checked", false);
         });
     });
-
 </script>

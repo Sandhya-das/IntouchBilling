@@ -48,7 +48,7 @@ namespace IntouchBilling.Pages
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
-        public Nullable<DateTime> CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
         public string BillNumber { get; set; }
 
